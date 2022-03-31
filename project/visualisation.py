@@ -1,9 +1,15 @@
-from openpyxl.chart import LineChart, BarChart
+from openpyxl.chart import LineChart, Reference
 
 
-def create_chart(ws, list_of_numbers: list):
+def create_chart(ws):
     chart = LineChart()
-    _str = 'data!B1:B' + str(len(list_of_numbers))
-    chart.add_data(_str)
-    ws.add_chart(chart)
 
+    keys = Reference(worksheet=ws, min_col=1, min_row=1, max_row=100)
+    values = Reference(worksheet=ws, min_col=2, min_row=1, max_row=100)
+
+    chart.width, chart.height = 30, 15
+
+    chart.add_data(values)
+    chart.set_categories(keys)
+
+    ws.add_chart(chart, 'D2')
