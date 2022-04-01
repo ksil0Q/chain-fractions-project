@@ -11,3 +11,4 @@ with open("in.txt") as file:
 
 result = project.main(number_of_fractions, number_of_floors, maximum_value)
 make_xlsx.create_table(result)
+
